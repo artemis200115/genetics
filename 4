@@ -1,0 +1,85 @@
+#Write code that translates a processed RNA sequence(predefined string) into a polypeptide chain. Create a dictionary to map each codon to its respective amino acid.
+seqRNA ="CGUAAUGCCCAGGUACGGUAGACUCGAUCGU"
+translation = {'UUU':'Phe','UUC':'Phe',
+               'UUA':'Leu','UUG':'Leu','CUU':'Leu','CUC':'Leu','CUA':'Leu','CUG':'Leu',
+               'AUU':'Ile','AUC':'Ile','AUA':'Ile',
+               'AUG':'Met',
+               'GUU':'Val','GUC':'Val','GUA':'Val','GUG':'Val',
+               'UCU':'Ser','UCC':'Ser','UCA':'Ser','UCG':'Ser',
+               'CCU':'Pro','CCC':'Pro','CCA':'Pro','CCG':'Pro',
+               'ACU':'Thr','ACC':'Thr','ACA':'Thr','ACG':'Thr',
+               'GCU':'Ala','GCC':'Ala','GCA':'Ala','GCG':'Ala',
+               'UAU':'Tyr','UAC':'Tyr',
+               'CAU':'His','CAC':'His',
+               'CAA':'Gln','CAG':'Gln',
+               'AAU':'Asn','AAC':'Asn',
+               'AAA':'Lys','AAG':'Lys',
+               'GAU':'Asp','GAC':'Asp',
+               'GAA':'Glu','GAG':'Glu',
+               'UGU':'Cys','UGC':'Cys',
+               'UGG':'Trp',
+               'CGU':'Arg','CGC':'Arg','CGA':'Arg','CGG':'Arg',
+               'AGU':'Ser','AGC':'Ser',
+               'AGA':'Arg','AGG':'Arg',
+               'GGU':'Gly','GGC':'Gly','GGA':'Gly','GGG':'Gly',
+               'UAA':'XXX','UAG':'XXX','UGA':'XXX'}
+
+peptide = " "
+start = 0
+end = 3
+while start< len(seqRNA)-3:
+  peptide += translation[seqRNA[start:end]]
+  peptide+= " "
+  start+=3
+  end+=3
+
+print (f"the acids generated are: {peptide}")
+
+################################################################################
+
+#Write a code that finds all ORF's (or exons) in a pre-mRNA sequence in order to generate a processed RNA sequence.
+
+rnaSeq= 'GCAAUGCCUUUCUUACCUCCUAACCCUUGACCUUAUACAUGAUUUAUGUUUAUGCCUCCUCCCGGGAACUAACACGCAGCGUAG'
+start = 0 
+end = 3
+orf=' '
+orfs = []
+
+initialize = False
+
+while start < len(rnaSeq)-3:
+  if rnaSeq[start:end] == 'AUG':
+    intialize =  True
+
+  elif (rnaSeq[start:end] == 'UGA') or (rnaSeq[start:end] == 'UAA') or (rnaSeq[start:end] == 'UAG'):
+    initialize = False
+    if len(orf)>0:
+      orfs.append(orf)
+    orf = ' '
+
+  if initialize == True:
+    orf += rnaSeq[start:end]
+  start +=3
+  end +=3
+
+
+print(orfs)
+
+###################################################################################
+
+#get the base pair proportion of a base
+
+def basepairprop(dna, base):
+  baseprop = dna.count(base)
+  basepairing = {'A':'T', 'C':'G', 'G':'C', 'T':'A'}
+  secondbase = basepairing[base]
+  secondbaseprop = dna.count(secondbase)
+  basepairamt = secondbaseprop + baseprop
+  percent = ((basepairamt) /( len(dna)))*100
+  return percent
+
+
+dna1 = "ACGTTGGACAGTACGATAGCATAGGTACACAAGTAGACAT"
+dna2 = "CGCTAGCGCTATGCAGTACAGTACAGGCTATGACAGCCTAGACCTGTGATCG"
+val = basepairprop(dna1, "A")
+print(val)
