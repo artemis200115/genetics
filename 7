@@ -1,0 +1,42 @@
+#reading viral dna sequences from a fasta file from NCBI , removing the header and any other pointless characters
+with open ("/sequence.fasta", "r") as viral_seq:
+  sequence = []
+  count = 0 
+  for line in viral_seq:
+    if count>0:
+      sequence.append(line)
+    count+=1
+
+  sequence2 = " ".join(sequence)
+  print(sequence2)
+
+with open ("sequence.txt", "w") as sequence:
+  sequence.write(sequence2)
+  
+  
+#transcribe sars cov 2 dna to rna
+
+with open ("/sequence (1).fasta", "r") as sarscov2:
+  sequence = []
+  count = 0 
+  for line in sarscov2:
+    if count>0:
+      sequence.append(line)
+    count+=1
+
+  sequence2 = " ".join(sequence)
+ #print(sequence2)
+
+dna_to_rna= {'A':'U', 'C':'G', 'G':'C', 'T':'A'}
+rnaSeq= " "
+for character in sequence2:
+  if character in dna_to_rna.keys():
+    rnaSeq += dna_to_rna[character]
+  else:
+    rnaSeq += character
+
+print(rnaSeq)
+
+
+with open ("rnasequence.txt", "w") as rnasequence:
+  rnasequence.write(rnaSeq)
