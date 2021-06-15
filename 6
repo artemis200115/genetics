@@ -1,0 +1,36 @@
+#percentage of genotypes in an offspring
+import random
+
+gen1 = str(input("gentotype of parent 1"))
+gen2 = str(input("gentotype of parent 2"))
+alleles1 = (gen1[0], gen1[1])
+alleles2 = (gen2[0], gen2[1])
+offspring = int(input("number of individuals generated"))
+genotypes = []
+
+for i in range(offspring):
+  genotype = random.choice(alleles1) + random.choice(alleles2)
+  genotypes.append(genotype)
+
+
+print(genotypes)
+
+AA=0
+Aa=0
+aa=0
+
+for i in genotypes:
+  if i == "AA":
+    AA +=1
+  elif i == "aA" or i== "Aa":
+    Aa +=1
+  elif i == "aa":
+    aa +=1
+
+percentAA = (AA/offspring)*100
+percentAa = (Aa/offspring)*100
+percentaa = (aa/offspring)*100
+
+print(f"percentage of AA: {percentAA}")
+print(f"percentage of Aa: {percentAa}")
+print(f"percentage of aa: {percentaa}")
