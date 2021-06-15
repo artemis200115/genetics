@@ -1,0 +1,103 @@
+#creating a menu for various genetic processes and asking for user input to execute
+def validInt(question):
+  while True:
+    try:
+      n = int(input(question))
+    except:
+      print("error")
+    else:
+      break
+  return n
+
+def transcription(seq):
+  dna_to_rna= {'A':'U', 'C':'G', 'G':'C', 'T':'A'}
+  rnaSeq= " "
+  for character in seq:
+    if character in dna_to_rna.keys():
+      rnaSeq += dna_to_rna[character]
+    else:
+      rnaSeq += character
+      
+  return rnaSeq
+
+def complement(seq):
+   dna_to_comp= {'A':'T', 'C':'G', 'G':'C', 'T':'A'}
+   comp= " "
+   for character in seq:
+     if character in dna_to_comp.keys():
+       comp += dna_to_comp[character]
+     else:
+       comp += character
+
+   return comp
+
+def atCont(seq):
+  a = seq.count("A")
+  c = seq.count("C")
+  g = seq.count("G")
+  t = seq.count("T")
+  total = a+c+g+t
+  at = ((a+t)/total)*100
+  return at
+
+
+def cgCont(seq):
+  a = seq.count("A")
+  c = seq.count("C")
+  g = seq.count("G")
+  t = seq.count("T")
+  total = a+c+g+t
+  at = ((c+g)/total)*100
+  return at
+
+sequence = str(input("path of the file"))
+with open (sequence) as seq:
+  seq2 = []
+  count = 0 
+  for line in seq:
+    if count>0:
+      seq2.append(line)
+    count+=1
+
+sequence3 = " ".join(seq2)
+
+rna5 = transcription(sequence3)
+
+
+complement = complement(sequence3)
+
+
+at = atCont(sequence3)
+
+
+cg = cgCont(sequence3)
+
+
+def writeSeq(seq):
+  with open("sequence6.txt", "w") as processed_seq:
+    processed_seq.write(seq)
+
+while True:
+  option = validInt("choose an option \n 1. return complementary sequence\n 2. return rna sequence\n 3. return A-T content\n 4. return C-G content")
+
+  if option == 1:
+    writeSeq(complement)
+    break
+
+
+  elif option == 2:
+    writeSeq(rna5)
+    break
+
+
+  elif option == 3:
+    print(f"AT content: {at}")
+    break
+
+
+  elif option == 4:
+    print(f"CG content: {cg}")
+    break
+
+  else:
+    print("error")
