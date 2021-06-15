@@ -1,0 +1,54 @@
+#Write a Python code that asks the user the number of individuals with the genotypes pp, pq, and qq in the population and then return the frequencies of the two alleles (p and q) in the population
+
+pp = int(input("enter the number of pp individuals"))
+pq = int(input("enter the number of pq individuals"))
+qq = int(input("enter the number of qq individuals"))
+numberofindividuals = (pp+pq+qq)
+print("total number of individuals = ", numberofindividuals)
+freqp = ((2*pp)+pq)/(numberofindividuals*2)
+freqq = ((2*qq)+pq)/(numberofindividuals*2)
+print("frequency of p = ", freqp)
+print("frequency of q = ", freqq)
+
+
+########################################################################################
+
+
+#Write a program that estimates gene distances based on the frequencies of the recombinant genotypes and the non-recombinant genotypes
+
+
+nonrecgen1 = int(input("how many individuals with non recombinant genotype 1?"))
+nonrecgen2 = int(input("how many individuals with non recombinant genotype 2? "))
+recgen1 = int(input("how many individuals with recombinant genotype 1?"))
+recgen2= int(input("how many individuals with recombinant genotype 2?"))
+RF = ((recgen1 +recgen2)/(recgen1 + recgen2 + nonrecgen1 + nonrecgen2))*100
+print("estimated frequency = ", round(RF, 2), "%")
+
+########################################################################################
+
+#Write a program that asks the user to type a nitrogen base according to the pairing rules. The program must tell with which of the four bases the chosen base must be paired. If the chosen base is not A,T,C or G, the program must say that this is not a DNA nitrogen base
+
+#Extra: as an extra, make sure that every time the user types an invalid base, the program warns the user that this is not a DNA base and asks him to type a valid base again until he types A, G, C or T
+
+while True:
+  base = input("enter a base")
+
+  if (base!= 'A') and (base!='T') and (base!='G') and (base!= 'C'):
+   print("enter a valid base")
+  
+
+  elif base == 'A':
+   print("A pairs with T")
+   break
+  
+  elif base == 'T':
+   print("T pairs with A")
+   break
+  
+  elif base == 'G':
+   print("G pairs with C")
+   break
+  
+  elif base == 'C':
+   print("C pairs with G")
+   break
