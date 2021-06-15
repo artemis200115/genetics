@@ -1,0 +1,20 @@
+#transcribe rna from dna using user input
+dna = str(input("what is the dna sequence?"))
+rna = ''
+for nucleotide in dna:
+  if nucleotide == 'T':
+    rna+='U'
+
+  else:
+    rna+= nucleotide
+
+print(f'the rna sequence is {rna}')
+
+#transcribe rna from dna using a predefined string
+seq = 'GCATTACGGGTCCATGCCATCTGAGCTAGCA'
+dna_to_rna= {'A':'U', 'C':'G', 'G':'C', 'T':'A'}
+rnaSeq = ''
+for nucleotide in seq:
+  rnaSeq+= dna_to_rna[nucleotide]
+
+print(f"the rna sequence is {rnaSeq}")
