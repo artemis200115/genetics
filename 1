@@ -1,0 +1,38 @@
+#Write a code that: a) returns the position where the start and termination codons begin b) extracts the ORF (open reading frame, or the exon, which is the sequence that will be translated into protein) of the RNA sequence
+rna =  str (input("what is the rna sequence?"))
+start = rna.find("AUG")
+termination1  = rna.find ("UAG")
+termination2  = rna.find ("UGA")
+termination3  = rna.find ("UAA")
+
+if (termination2 == -1): 
+    termination2 = "none"
+
+if (termination1 == -1):
+    termination1 = "none"
+
+if (termination3 == -1):
+    termination3 = "none"
+      
+print(f"the position for start codon is {start}")
+print(f"the positions for termination codons (UAG, UGA, UAA respectively) is/are {termination1}, {termination2}, {termination3}")
+
+if (termination1 != "none"):
+  orf1 = rna [start:termination1+3]
+
+else:
+  orf1 = "none"
+
+if (termination2 != "none"):
+  orf2 = rna [start:termination2+3]
+
+else:
+  orf2= "none"
+
+if (termination3 != "none"):
+  orf3 = rna [start:termination3+3]
+
+else:
+  orf3 = "none"
+
+print(f"the orfs is/are {orf1}, {orf2}, {orf3}")
