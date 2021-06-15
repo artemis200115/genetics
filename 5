@@ -1,0 +1,40 @@
+#hardy weinberg theorem
+
+pp = int(input("enter the number of pp individuals"))
+pq = int(input("enter the number of pq individuals"))
+qq = int(input("enter the number of qq individuals"))
+n= (pp+pq+qq)
+print("total number of individuals = ", n)
+
+def freqallele(homo, hetero, n):
+  freq= ((2*homo)+hetero)/(n*2)
+  return freq
+
+freqp = freqallele(pp,pq,n)
+freqq = freqallele(qq,pq,n)
+print("frequency of p = ", freqp)
+print("frequency of q = ", freqq)
+
+expp = freqp**2*n
+expq = freqq**2*n
+exppq = freqp*freqq*n*2
+
+exp = (expp, exppq, expq)
+
+obs = (pp, pq, qq)
+
+print(f"observed \n pp:{pp}, qq: {qq}, pq:{pq}")
+print(f"expected \n pp:{expp}, qq: {expq}, pq:{exppq}")
+
+
+def chisquare(obs,exp):
+  chisquare = 0
+  count = 0
+  while count<len(obs):
+    delta = (obs[count] - exp[count])**2/exp[count]
+    chisquare += delta
+    count +=1
+  return chisquare
+
+chi = chisquare(obs,exp)
+print(f"chisquare = {chi}")
